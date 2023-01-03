@@ -19,7 +19,7 @@ void main() async {
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => const AppView(),
+      builder: (context) => AppView(),
       availableLocales: const <Locale>[
         Locale("en_US"),
         Locale("zh_CN"),

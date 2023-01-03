@@ -14,6 +14,15 @@ class AppView extends GetView<AppController> {
   @override
   Widget build(BuildContext context) {
     final config = controller.downloaderConfig.value;
+    var dpLocale = DevicePreview.locale(context);
+    if (Get.locale != dpLocale) {
+      Future.delayed(
+        Duration(milliseconds: 10),
+        () {
+          Get.updateLocale(dpLocale!);
+        },
+      );
+    }
     return GetMaterialApp.router(
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
