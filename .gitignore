@@ -23,5 +23,5 @@ bin/
 *.db
 
 .DS_Store
-
+.vscode
 dist/

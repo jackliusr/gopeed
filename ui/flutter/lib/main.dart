@@ -10,12 +10,22 @@ import 'pages/app/app_view.dart';
 import 'util/log_util.dart';
 import 'util/mac_secure_util.dart';
 import 'util/package_info.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
   await init();
   onStart();
 
-  runApp(const AppView());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const AppView(),
+      availableLocales: const <Locale>[
+        Locale("en_US"),
+        Locale("zh_CN"),
+      ], // Wrap your app
+    ),
+  );
 }
 
 Future<void> init() async {

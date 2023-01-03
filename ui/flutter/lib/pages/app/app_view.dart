@@ -6,6 +6,7 @@ import '../../i18n/messages.dart';
 import '../../routes/router.dart';
 import '../../theme/theme.dart';
 import 'app_controller.dart';
+import 'package:device_preview/device_preview.dart';
 
 class AppView extends GetView<AppController> {
   const AppView({Key? key}) : super(key: key);
@@ -14,12 +15,15 @@ class AppView extends GetView<AppController> {
   Widget build(BuildContext context) {
     final config = controller.downloaderConfig.value;
     return GetMaterialApp.router(
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       theme: GopeedTheme.light,
       darkTheme: GopeedTheme.dark,
       themeMode: ThemeMode.values.byName(config.extra.themeMode),
       translations: messages,
-      locale: toLocale(config.extra.locale),
+      //locale: toLocale(config.extra.locale),
       fallbackLocale: fallbackLocale,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
